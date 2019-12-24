@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -39,7 +37,7 @@ public class SplashScreen extends AppCompatActivity {
                     splash_progress.setVisibility(View.GONE);
 
                 }
-            },5000);
+            },4000);
         }
         else {
             splash_progress.setVisibility(View.GONE);

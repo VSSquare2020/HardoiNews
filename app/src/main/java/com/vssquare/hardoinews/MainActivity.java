@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     private  String baseURL = "https://newshardoi.com/";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle =new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
         mDrawerlayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        list = new ArrayList<Model>();
+        list = new ArrayList<>();
         adapter= new RecyclerViewAdapter(list,MainActivity.this);
         recyclerView.setAdapter(adapter);
         if (CheckInternetConnection.IsNetworkAvailable(this)) {
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Log.e("main","title"+response.body().get(i).getTitle().getRendered() +""+
                             img);
 
-                    String tempdetails =response.body().get(i).getExcerpt().getRendered().toString();
+                    String tempdetails = response.body().get(i).getExcerpt().getRendered();
                     tempdetails=tempdetails.replace("<p>","");
                     tempdetails=tempdetails.replace("</p>","");
                     tempdetails=tempdetails.replace("[&hellip","");

@@ -23,6 +23,7 @@
             android:layout_height="120dp"
             android:src="@drawable/new_hardoi_logo"
             android:id="@+id/Icon"
+            android:contentDescription="@string/app_name"
             android:layout_weight="9"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"/>
@@ -39,7 +40,6 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textAlignment="center"
-                android:textColor="#000000"
                 android:id="@+id/title"
                 android:layout_marginBottom="5dp"
                 android:gravity="start"/>
