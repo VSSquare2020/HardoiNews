@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/categories">
+        <menu>
+        <item
+            android:id="@+id/desh"
+            android:icon="@drawable/india"
+            android:title="@string/desh" />
+
+        <item
+            android:id="@+id/up"
+            android:icon="@drawable/uttarpradesh"
+            android:title="@string/UP" />
+
+        <item
+            android:id="@+id/politics"
+            android:icon="@drawable/politics"
+            android:title="@string/politics" />
+        <item
+            android:id="@+id/education"
+            android:icon="@drawable/education"
+            android:title="@string/education" />
+        <item
+            android:id="@+id/crime"
+            android:icon="@drawable/crime"
+            android:title="@string/crime" />
+
+        <item
+            android:id="@+id/games"
+            android:icon="@drawable/sports"
+            android:title="@string/games" />
+        <item
+            android:id="@+id/health"
+            android:icon="@drawable/health"
+            android:title="@string/health" />
+        </menu>
+    </item>
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/ic_share"
+                android:title="@string/share" />
+            <item
+                android:id="@+id/contact"
+                android:icon="@drawable/ic_mail"
+                android:title="@string/contact" />
+
+        </menu>
+    </item>
+
+
+</menu>
