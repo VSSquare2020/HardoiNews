@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getRetrofit(){
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)
                 .addConverterFactory(GsonConverterFactory.create())
