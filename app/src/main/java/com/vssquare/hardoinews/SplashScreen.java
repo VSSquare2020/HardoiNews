@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SplashScreen extends AppCompatActivity {
-    private String url = Const.url;
+    String url = Const.url;
     public static List<Data_Model> model_datas ;
     ImageView splash_logo;
     RelativeLayout splash_layout;
@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
         if (CheckInternetConnection.IsNetworkAvailable(this)){
             model_datas = new ArrayList<>();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            final StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String s) {
                     try {
@@ -78,6 +78,7 @@ public class SplashScreen extends AppCompatActivity {
                 public void onErrorResponse(VolleyError volleyError) {
                     volleyError.printStackTrace();
                     Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_network_error), Toast.LENGTH_LONG).show();
+                    finishAffinity();
                 }
             });
             SingletonVolley.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);

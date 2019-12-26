@@ -57,10 +57,10 @@
             android:label="@string/desh"/>
         <activity android:name=".WPPostDetails"
             android:configChanges="screenSize|orientation"
-            android:label="@string/Latest_news"/>
+            android:label="@string/main_title"/>
         <activity android:name=".MainActivity"
             android:configChanges="screenSize|orientation"
-            android:label="@string/Latest_news"
+            android:label="@string/main_title"
             />
     </application>
 

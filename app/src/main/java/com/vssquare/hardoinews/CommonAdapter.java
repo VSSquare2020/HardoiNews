@@ -54,7 +54,6 @@ public class CommonAdapter extends BaseAdapter {
 
             holder.post_image = convertView.findViewById(R.id.post_image);
             holder.post_title = convertView.findViewById(R.id.post_title);
-            holder.main_activity_progress = convertView.findViewById(R.id.progressbar);
             holder.post_date = convertView.findViewById(R.id.post_date);
             holder.post_author = convertView.findViewById(R.id.post_author);
             convertView.setTag(holder);
@@ -74,7 +73,7 @@ public class CommonAdapter extends BaseAdapter {
         ImageLoader.getInstance().displayImage(jsonData.get(position).getFeatured_media_url(), holder.post_image, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String s, View view) {
-                finalHolder.main_activity_progress.setVisibility(View.VISIBLE);
+                //finalHolder.main_activity_progress.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -84,7 +83,7 @@ public class CommonAdapter extends BaseAdapter {
 
             @Override
             public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                finalHolder.main_activity_progress.setVisibility(View.GONE);
+                //finalHolder.main_activity_progress.setVisibility(View.GONE);
             }
 
             @Override
@@ -98,7 +97,7 @@ public class CommonAdapter extends BaseAdapter {
         private ImageView post_image;
         private TextView post_date;
         private TextView post_title;
-        private ProgressBar main_activity_progress;
+       // private ProgressBar main_activity_progress;
         private TextView post_author;
     }
 }

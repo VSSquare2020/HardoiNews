@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -21,13 +20,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, NavigationView.OnNavigationItemSelectedListener{
     private RelativeLayout main_layout;
-    private ListView listView;
+    ListView listView;
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private List<Data_Model> jsonDataList = SplashScreen.model_datas;
@@ -50,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Navigation Bar
+
+        listView = findViewById(R.id.listView);
+
         main_layout = findViewById(R.id.main_layout);
         mDrawerlayout = findViewById(R.id.drawer);
         actionBarDrawerToggle =new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .build();
         ImageLoader.getInstance().init(config);
 
-        listView = findViewById(R.id.listView);
+
         listView.setOnItemClickListener(this);
-        adapter = new CommonAdapter(getApplicationContext(),jsonDataList);
+        adapter = new CommonAdapter(getApplication(),jsonDataList);
         listView.setAdapter(adapter);
 //        if (CheckInternetConnection.IsNetworkAvailable(this)) {
 //            getRetrofit();
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(getApplicationContext(),WPPostDetails.class);
+        Intent intent = new Intent(getApplication(),WPPostDetails.class);
         intent.putExtra(POST_ID,jsonDataList.get(i).getId());
         intent.putExtra(POST_TITLE,jsonDataList.get(i).getTitle_rendered());
         intent.putExtra(POST_URL,jsonDataList.get(i).getLink());
