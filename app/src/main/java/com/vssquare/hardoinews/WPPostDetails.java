@@ -57,7 +57,7 @@ public class WPPostDetails extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
-        String post_url = MainActivity.mListPost.get(position).getLink();
+       // String post_url = MainActivity.mListPost.get(position).getLink();
 
         if (CheckInternetConnection.IsNetworkAvailable(this)) {
             String url = Const.get_content_by_id.replace("POST_ID",String.valueOf(position));

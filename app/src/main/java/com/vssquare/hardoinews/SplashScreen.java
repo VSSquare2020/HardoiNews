@@ -24,10 +24,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SplashScreen extends AppCompatActivity {
     private String url = Const.url;
-    public static ArrayList<Data_Model> model_datas ;
+    public static List<Data_Model> model_datas ;
     ImageView splash_logo;
     RelativeLayout splash_layout;
     ProgressBar splash_progress;

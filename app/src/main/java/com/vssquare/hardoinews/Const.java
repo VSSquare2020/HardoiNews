@@ -2,7 +2,7 @@ package com.vssquare.hardoinews;
 
 public class Const {
 
-    public static final String url = "https://newshardoi.com/wp-json/wp/v2/posts/?filter[category_name]=android&per_page=40&fields=id,date,title,share_text,content,pwapp_author,featuredimage";
+    public static final String url = "https://newshardoi.com/wp-json/wp/v2/posts/?filter[category_name]=android&per_page=15&fields=id,date,title,link,pwapp_author,featuredimage";
 
     public static final String get_categories_url = "https://newshardoi.com/wp-json/wp/v2/categories?fields=id,description,name";
 

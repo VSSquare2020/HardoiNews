@@ -30,10 +30,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ListView listView;
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private ProgressBar progressBar;
-    private ArrayList<Data_Model> jsonDataList = SplashScreen.model_datas;
-    static List<WPPost> mListPost;
-    private CommonAdapter adapter;
+    private List<Data_Model> jsonDataList = SplashScreen.model_datas;
+    //static List<WPPost> mListPost;
+    CommonAdapter adapter;
     public static final String POST_ID = "id";
     public static final String POST_TITLE = "post_title";
     public static final String POST_URL = "url";
@@ -71,12 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageLoader.getInstance().init(config);
 
         listView = findViewById(R.id.listView);
-        progressBar = findViewById(R.id.progressbar);
-        progressBar.setVisibility(View.VISIBLE);
-
         listView.setOnItemClickListener(this);
-
-        jsonDataList = new ArrayList<>();
         adapter = new CommonAdapter(getApplicationContext(),jsonDataList);
         listView.setAdapter(adapter);
 //        if (CheckInternetConnection.IsNetworkAvailable(this)) {
