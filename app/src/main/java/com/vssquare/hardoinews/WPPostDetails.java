@@ -19,7 +19,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class WPPostDetails extends AppCompatActivity {
 
@@ -27,6 +34,12 @@ public class WPPostDetails extends AppCompatActivity {
     WebView webView;
     ProgressDialog progressDialog;
     RelativeLayout post_layout;
+    public static final String POST_ID = "id";
+    public static final String POST_TITLE = "post_title";
+    public static final String POST_URL = "url";
+    public static final String POST_IMAGE_URL = "post_image";
+    public static final String POST_DATE = "date";
+    public static final String POST_AUTHOR = "author";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +49,10 @@ public class WPPostDetails extends AppCompatActivity {
         webView = findViewById(R.id.postwebview);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent i = getIntent();
-        int position = i.getExtras().getInt("itemPosition");
+        int position = i.getExtras().getInt(POST_ID);
+
+        final WebviewLoader webViewLoader = new WebviewLoader(webView);
+        webViewLoader.setWebSettings();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -44,8 +60,28 @@ public class WPPostDetails extends AppCompatActivity {
         String post_url = MainActivity.mListPost.get(position).getLink();
 
         if (CheckInternetConnection.IsNetworkAvailable(this)) {
-            startWebView(post_url);
+            String url = Const.get_content_by_id.replace("POST_ID",String.valueOf(position));
             progressDialog.show();
+            StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String s) {
+                    try {
+                        JSONObject ParentObject = new JSONObject(s);
+                        webViewLoader.setLoadDataWithBaseUrl(ParentObject.getJSONObject("content").getString("rendered"));
+                        progressDialog.dismiss();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+                    progressDialog.dismiss();
+                    Toast.makeText(WPPostDetails.this,"Unable to Load Data", Toast.LENGTH_LONG).show();
+                }
+            });
+            SingletonVolley.getInstance(getApplicationContext()).addToRequestQueue(request);
+
 
         }
         else {
@@ -66,32 +102,6 @@ public class WPPostDetails extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void startWebView(String url) {
-        progressDialog.show();
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                progressDialog.show();
-                return true;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(WPPostDetails.this, "Error:" + description, Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-
-            }
-        });
-        webView.loadUrl(url);
-    }
 
     @Override
     public void onBackPressed() {
@@ -100,14 +110,5 @@ public class WPPostDetails extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && this.webView.canGoBack()) {
-            this.webView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }

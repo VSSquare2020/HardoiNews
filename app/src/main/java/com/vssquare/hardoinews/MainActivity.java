@@ -3,58 +3,48 @@ package com.vssquare.hardoinews;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.FutureTask;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
     private RelativeLayout main_layout;
-    private RecyclerView recyclerView;
+    private ListView listView;
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private ProgressBar progressBar;
-    private LinearLayoutManager linearLayoutManager;
-    private ArrayList<Model> list;
+    private ArrayList<Data_Model> jsonDataList = SplashScreen.model_datas;
     static List<WPPost> mListPost;
-    private RecyclerViewAdapter adapter;
+    private CommonAdapter adapter;
+    public static final String POST_ID = "id";
+    public static final String POST_TITLE = "post_title";
+    public static final String POST_URL = "url";
+    public static final String POST_IMAGE_URL = "post_image";
+    public static final String POST_DATE = "date";
+    public static final String POST_AUTHOR = "author";
     NavigationView navigationView;
-    private  String baseURL = "https://newshardoi.com/";
+
+    public MainActivity(){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,23 +61,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        recyclerView = findViewById(R.id.recyclerview);
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .build();
+        ImageLoader.getInstance().init(config);
+
+        listView = findViewById(R.id.listView);
         progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.VISIBLE);
-        linearLayoutManager =new LinearLayoutManager(MainActivity.this,LinearLayoutManager.
-                VERTICAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
 
-        list = new ArrayList<>();
-        adapter= new RecyclerViewAdapter(list,MainActivity.this);
-        recyclerView.setAdapter(adapter);
-        if (CheckInternetConnection.IsNetworkAvailable(this)) {
-            getRetrofit();
-        }else{
-            Snackbar.make(main_layout, "No Internet Connection!!", Snackbar.LENGTH_LONG).show();
-            progressBar.setVisibility(View.GONE);
-            getLayoutInflater().inflate(R.layout.errormessage,main_layout);
-        }
+        listView.setOnItemClickListener(this);
+
+        jsonDataList = new ArrayList<>();
+        adapter = new CommonAdapter(getApplicationContext(),jsonDataList);
+        listView.setAdapter(adapter);
+//        if (CheckInternetConnection.IsNetworkAvailable(this)) {
+//            getRetrofit();
+//        }else{
+//            Snackbar.make(main_layout, "No Internet Connection!!", Snackbar.LENGTH_LONG).show();
+//            progressBar.setVisibility(View.GONE);
+//            getLayoutInflater().inflate(R.layout.errormessage,main_layout);
+//        }
     }
 
     @Override
@@ -111,51 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void getRetrofit(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RetrofitArrayApi service =retrofit.create(RetrofitArrayApi.class);
-        Call<List<WPPost>> call= service.getPostInfo();
-
-        call.enqueue(new Callback<List<WPPost>>() {
-            @Override
-            public void onResponse(Call<List<WPPost>> call, Response<List<WPPost>> response) {
-                Log.e("mainactivity","response"+response.body());
-                mListPost = response.body();
-
-                progressBar.setVisibility(View.GONE);
-
-                for (int i=0;i<response.body().size();i++){
-                    String img = response.body().get(i).getLinks().getWpFeaturedmedia().get(0).getHref();
-                    Log.e("main","title"+response.body().get(i).getTitle().getRendered() +""+
-                            img);
-
-                    String tempdetails = response.body().get(i).getExcerpt().getRendered();
-                    tempdetails=tempdetails.replace("<p>","");
-                    tempdetails=tempdetails.replace("</p>","");
-                    tempdetails=tempdetails.replace("[&hellip","");
-
-
-                    list.add(new Model(Model.IMAGE_TYPE, response.body().get(i).getTitle()
-                            .getRendered(),tempdetails,response.body().get(i).getLinks()
-                            .getWpFeaturedmedia().get(0).getHref()));
-
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onFailure(Call<List<WPPost>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-            }
-        });
-
-
-        }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -215,5 +168,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return false;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(getApplicationContext(),WPPostDetails.class);
+        intent.putExtra(POST_ID,jsonDataList.get(i).getId());
+        intent.putExtra(POST_TITLE,jsonDataList.get(i).getTitle_rendered());
+        intent.putExtra(POST_URL,jsonDataList.get(i).getLink());
+        intent.putExtra(POST_IMAGE_URL,jsonDataList.get(i).getFeatured_media_url());
+        intent.putExtra(POST_DATE,jsonDataList.get(i).getDate());
+        intent.putExtra(POST_AUTHOR,jsonDataList.get(i).getAuthor_name());
+        //intent.putExtra(POST_DATE,dateConverter.getDate(jsonDataList.get(position).getDate())+" "+ dateConverter.getMonth(jsonDataList.get(position).getDate()));
+        startActivity(intent);
     }
 }

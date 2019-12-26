@@ -16,5 +16,7 @@
     <string name="communicate">Communicate</string>
     <string name="Latest_news">Latest News</string>
     <string name="settings">Settings</string>
+    <string name="toast_network_error">Network connectivity is bad! Please try again</string>
+    <string name="permission">Please enable permissions</string>
     <string name="exit">Exit</string>
 </resources>

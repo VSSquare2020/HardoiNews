@@ -5,21 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer"
-    android:background="@color/Main_Back"
     tools:context=".MainActivity">
    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
        android:id="@+id/main_layout"
         >
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerview"
+            android:id="@+id/listView"
             >
 
 
-       </androidx.recyclerview.widget.RecyclerView>
+        </ListView>
 
         <ProgressBar
             android:layout_width="wrap_content"
