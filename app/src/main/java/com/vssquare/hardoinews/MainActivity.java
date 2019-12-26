@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //static List<WPPost> mListPost;
     CommonAdapter adapter;
     public static final String POST_ID = "id";
-    public static final String POST_TITLE = "post_title";
-    public static final String POST_URL = "url";
-    public static final String POST_IMAGE_URL = "post_image";
+    public static final String POST_TITLE = "title";
+    public static final String POST_URL = "link";
+    public static final String POST_IMAGE_URL = "featured";
     public static final String POST_DATE = "date";
     public static final String POST_AUTHOR = "author";
     NavigationView navigationView;
