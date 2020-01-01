@@ -25,6 +25,7 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
     public static final String POST_IMAGE_URL = "featured";
     public static final String POST_DATE = "date";
     public static final String POST_AUTHOR = "author";
+    public static final String POST_CATEGORY = "cat_name";
 
     public Main_Post_Slider(Context context,List<Data_Model> jsonData) {
         this.context = context;
@@ -39,7 +40,6 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
 
     @Override
     public void onBindViewHolder(final MainPostAdapter viewHolder, final int position) {
-        // viewHolder.textViewDescription.setText("This is slider item " + position);
         final Intent slider_post_details = new Intent(context,WPPostDetails.class);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +52,7 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
                         slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(0).getFeatured_media_url());
                         slider_post_details.putExtra(POST_DATE,jsonData.get(0).getDate());
                         slider_post_details.putExtra(POST_AUTHOR,jsonData.get(0).getAuthor_name());
+                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(0).getCategory_name());
                         slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(slider_post_details);
                         break;
@@ -62,6 +63,7 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
                         slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(1).getFeatured_media_url());
                         slider_post_details.putExtra(POST_DATE,jsonData.get(1).getDate());
                         slider_post_details.putExtra(POST_AUTHOR,jsonData.get(1).getAuthor_name());
+                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(1).getCategory_name());
                         slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(slider_post_details);
                         break;
@@ -72,6 +74,7 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
                         slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(2).getFeatured_media_url());
                         slider_post_details.putExtra(POST_DATE,jsonData.get(2).getDate());
                         slider_post_details.putExtra(POST_AUTHOR,jsonData.get(2).getAuthor_name());
+                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(2).getCategory_name());
                         slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(slider_post_details);
                         break;
@@ -82,6 +85,7 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
                         slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(3).getFeatured_media_url());
                         slider_post_details.putExtra(POST_DATE,jsonData.get(3).getDate());
                         slider_post_details.putExtra(POST_AUTHOR,jsonData.get(3).getAuthor_name());
+                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(3).getCategory_name());
                         slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(slider_post_details);
                         break;

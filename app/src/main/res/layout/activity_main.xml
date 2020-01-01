@@ -8,21 +8,23 @@
     tools:context=".MainActivity">
    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       android:background="@color/grey_color"
+        android:layout_height="wrap_content"
+       android:background="@color/white"
        android:id="@+id/main_layout"
         >
        <androidx.cardview.widget.CardView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           app:cardCornerRadius="10dp"
            android:id="@+id/post_slider_card"
-           android:layout_margin="15dp">
+           >
 
            <com.smarteist.autoimageslider.SliderView
                android:layout_width="match_parent"
-               android:layout_height="250dp"
+               android:layout_height="220dp"
                android:id="@+id/post_slider"
+               android:foreground="@drawable/ripple_effect"
+               android:clickable="true"
+               android:focusable="true"
                app:sliderAnimationDuration="600"
                app:sliderAutoCycleDirection="back_and_forth"
                app:sliderAutoCycleEnabled="true"
@@ -35,7 +37,7 @@
                app:sliderIndicatorRadius="2dp"
                app:sliderIndicatorSelectedColor="@color/white"
                app:sliderIndicatorUnselectedColor="@color/colorPrimary"
-               app:sliderScrollTimeInSec="6"
+               app:sliderScrollTimeInSec="10"
                app:sliderStartAutoCycle="true" />
        </androidx.cardview.widget.CardView>
        <TextView
@@ -62,14 +64,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/listView"
-
             >
         </ListView>
        </LinearLayout>
 
 
     </RelativeLayout>
-
         <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

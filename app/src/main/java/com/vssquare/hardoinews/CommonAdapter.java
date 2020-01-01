@@ -29,7 +29,7 @@ public class CommonAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return jsonData.size();
+        return jsonData.size()-4;
     }
 
     @Override
@@ -55,13 +55,16 @@ public class CommonAdapter extends BaseAdapter {
             holder.post_title = convertView.findViewById(R.id.post_title);
             holder.post_date = convertView.findViewById(R.id.post_date);
             holder.post_author = convertView.findViewById(R.id.post_author);
+            holder.category_txt = convertView.findViewById(R.id.category_Txt);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+        position = position + 4;
         holder.post_title.setText(jsonData.get(position).getTitle_rendered());
         holder.post_author.setText(jsonData.get(position).getAuthor_name());
         holder.post_date.setText(jsonData.get(position).getDate());
+        holder.category_txt.setText(jsonData.get(position).getCategory_name());
 
         final ViewHolder finalHolder = holder;
         ImageLoader.getInstance().displayImage(jsonData.get(position).getFeatured_media_url(), holder.post_image, new ImageLoadingListener() {
@@ -92,5 +95,6 @@ public class CommonAdapter extends BaseAdapter {
         private TextView post_date;
         private TextView post_title;
         private TextView post_author;
+        private TextView category_txt;
     }
 }

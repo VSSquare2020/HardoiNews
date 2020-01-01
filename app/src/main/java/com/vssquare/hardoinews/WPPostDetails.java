@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -26,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -41,12 +43,13 @@ import java.util.List;
 
 public class WPPostDetails extends AppCompatActivity {
 
-    TextView details_post_title,details_post_author,details_post_date;
+    TextView details_post_title,details_post_author,details_post_date,post_details_category;
     WebView webView;
     ImageView details_post_image;
     ProgressBar details_post_progress;
     ProgressDialog progressDialog;
     RelativeLayout post_layout;
+    FloatingActionButton post_details_share;
     public static final String POST_ID = "id";
 
     @Override
@@ -60,11 +63,17 @@ public class WPPostDetails extends AppCompatActivity {
         details_post_author = findViewById(R.id.details_post_author);
         details_post_date = findViewById(R.id.details_post_date);
         details_post_progress = findViewById(R.id.details_post_progress);
+        post_details_category = findViewById(R.id.post_details_category);
+
+        post_details_share = findViewById(R.id.fab_share);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent i = getIntent();
         int position = i.getExtras().getInt(POST_ID);
         final WebviewLoader webViewLoader = new WebviewLoader(webView);
         webViewLoader.setWebSettings();
+
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -84,6 +93,8 @@ public class WPPostDetails extends AppCompatActivity {
                         details_post_title.setText(ParentObject.getJSONObject("title").getString("rendered"));
                         details_post_author.setText(ParentObject.getJSONObject("pwapp_author").getString("name"));
                         details_post_date.setText(" | " + ParentObject.getString("date").substring(0,10));
+
+                        post_details_category.setText(getIntent().getStringExtra("cat_name"));
 
                         String image_url = ParentObject.getString("featuredimage");
 
@@ -132,6 +143,49 @@ public class WPPostDetails extends AppCompatActivity {
             progressDialog.dismiss();
             getLayoutInflater().inflate(R.layout.errormessage,post_layout);
         }
+
+
+        post_details_share.setRippleColor(getResources().getColor(R.color.white));
+        post_details_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                String share_Message= getIntent().getStringExtra("title") + "\n" + getIntent().getStringExtra("link")+"\n";
+                share_Message = share_Message + "Download News Hardoi App,\n To get all the latest of Hardoi.\n\n";
+                share_Message = share_Message + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID;
+                shareIntent.putExtra(Intent.EXTRA_TEXT, share_Message);
+                startActivity(Intent.createChooser(shareIntent, "Share With.."));
+            }
+        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            webView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                    if (i1 > i3 && i1 > 0) {
+                        post_details_share.hide();
+                    }
+                    if (i1 < i3) {
+                        post_details_share.show();
+                    }
+                }
+            });
+        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            webView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//                @Override
+//                public void onScrollChange(View Webview,int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                    if (scrollY > oldScrollY && scrollY > 0) {
+//                        post_details_share.hide();
+//                    }
+//                    if (scrollY < oldScrollY) {
+//                        post_details_share.show();
+//                    }
+//                }
+//
+//            });
+
 
 
     }

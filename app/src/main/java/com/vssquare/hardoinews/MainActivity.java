@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,7 +30,6 @@ import com.smarteist.autoimageslider.SliderView;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, NavigationView.OnNavigationItemSelectedListener{
-    private RelativeLayout main_layout;
     ListView listView;
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String POST_IMAGE_URL = "featured";
     public static final String POST_DATE = "date";
     public static final String POST_AUTHOR = "author";
+    public static final String POST_CATEGORY = "cat_name";
     NavigationView navigationView;
 
     SliderView sliderView;
@@ -58,8 +59,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         listView = findViewById(R.id.listView);
         sliderView = findViewById(R.id.post_slider);
-
-        main_layout = findViewById(R.id.main_layout);
         mDrawerlayout = findViewById(R.id.drawer);
         actionBarDrawerToggle =new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
         mDrawerlayout.addDrawerListener(actionBarDrawerToggle);
@@ -104,28 +103,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        switch (item.getItemId()){
-            case R.id.action_settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_exit:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -179,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             mDrawerlayout.closeDrawer(GravityCompat.START);
         }
+        else if(id == R.id.exit_app){
+            finish();
+        }
         else {
             Intent intent = new Intent(MainActivity.this,Contact_Us.class);
             startActivity(intent);
@@ -190,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        i = i + 4;
         Intent intent = new Intent(getApplication(),WPPostDetails.class);
         intent.putExtra(POST_ID,jsonDataList.get(i).getId());
         intent.putExtra(POST_TITLE,jsonDataList.get(i).getTitle_rendered());
@@ -197,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra(POST_IMAGE_URL,jsonDataList.get(i).getFeatured_media_url());
         intent.putExtra(POST_DATE,jsonDataList.get(i).getDate());
         intent.putExtra(POST_AUTHOR,jsonDataList.get(i).getAuthor_name());
+        intent.putExtra(POST_CATEGORY,jsonDataList.get(i).getCategory_name());
         startActivity(intent);
     }
+
 }
