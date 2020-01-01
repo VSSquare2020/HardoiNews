@@ -59,6 +59,7 @@ public class SplashScreen extends AppCompatActivity {
                             data_model.setTitle_rendered(ParentObject.getJSONObject("title").getString("rendered"));
                             data_model.setFeatured_media_url(ParentObject.getString("featuredimage"));
                             data_model.setAuthor_name(ParentObject.getJSONObject("pwapp_author").getString("name"));
+                            data_model.setCategory_name(ParentObject.getJSONObject("pwapp_terms").getJSONArray("category").getJSONObject(0).getString("cat_name"));
                             model_datas.add(data_model);
                         }
                     }catch (JSONException e) {

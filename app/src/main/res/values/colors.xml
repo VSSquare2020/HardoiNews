@@ -3,7 +3,7 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#131313</color>
     <color name="colorAccent">#272727</color>
-    <color name="color">#D5D5D5</color>
+    <color name="grey_color">#EBEBEB</color>
     <color name="Main_Back">#B8B8B8</color>
     <color name="card_color">#FFFFFF</color>
     <color name="navigation_back">#FFFFFF</color>

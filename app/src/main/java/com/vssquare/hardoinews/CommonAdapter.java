@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -60,14 +59,9 @@ public class CommonAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        //DateConverter dateConverter = new DateConverter();
-
-
         holder.post_title.setText(jsonData.get(position).getTitle_rendered());
         holder.post_author.setText(jsonData.get(position).getAuthor_name());
         holder.post_date.setText(jsonData.get(position).getDate());
-       // holder.date.setText(dateConverter.getDate(jsonData.get(position).getDate())+" "+ dateConverter.getMonth(jsonData.get(position).getDate()));
-
 
         final ViewHolder finalHolder = holder;
         ImageLoader.getInstance().displayImage(jsonData.get(position).getFeatured_media_url(), holder.post_image, new ImageLoadingListener() {
@@ -97,7 +91,6 @@ public class CommonAdapter extends BaseAdapter {
         private ImageView post_image;
         private TextView post_date;
         private TextView post_title;
-       // private ProgressBar main_activity_progress;
         private TextView post_author;
     }
 }

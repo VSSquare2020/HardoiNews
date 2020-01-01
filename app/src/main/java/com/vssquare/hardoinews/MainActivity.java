@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, NavigationView.OnNavigationItemSelectedListener{
@@ -28,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private List<Data_Model> jsonDataList = SplashScreen.model_datas;
-    //static List<WPPost> mListPost;
     CommonAdapter adapter;
     public static final String POST_ID = "id";
     public static final String POST_TITLE = "title";
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static final String POST_DATE = "date";
     public static final String POST_AUTHOR = "author";
     NavigationView navigationView;
+
+    SliderView sliderView;
+    Main_Post_Slider main_post_slider;
 
     public MainActivity(){
 
@@ -49,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Navigation Bar
 
         listView = findViewById(R.id.listView);
+        sliderView = findViewById(R.id.post_slider);
 
         main_layout = findViewById(R.id.main_layout);
         mDrawerlayout = findViewById(R.id.drawer);
@@ -69,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 .build();
         ImageLoader.getInstance().init(config);
 
+        main_post_slider = new Main_Post_Slider(getApplicationContext(),jsonDataList);
+        sliderView.setSliderAdapter(main_post_slider);
+
 
         listView.setOnItemClickListener(this);
         adapter = new CommonAdapter(getApplication(),jsonDataList);
@@ -80,6 +92,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 //            progressBar.setVisibility(View.GONE);
 //            getLayoutInflater().inflate(R.layout.errormessage,main_layout);
 //        }
+        sliderView.setIndicatorAnimation(IndicatorAnimations.SLIDE); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.startAutoCycle();
+
+        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
+            @Override
+            public void onIndicatorClicked(int position) {
+                sliderView.setCurrentPagePosition(position);
+            }
+        });
+
     }
 
     @Override
@@ -173,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra(POST_IMAGE_URL,jsonDataList.get(i).getFeatured_media_url());
         intent.putExtra(POST_DATE,jsonDataList.get(i).getDate());
         intent.putExtra(POST_AUTHOR,jsonDataList.get(i).getAuthor_name());
-        //intent.putExtra(POST_DATE,dateConverter.getDate(jsonDataList.get(position).getDate())+" "+ dateConverter.getMonth(jsonDataList.get(position).getDate()));
         startActivity(intent);
     }
 }

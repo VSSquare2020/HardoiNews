@@ -13,40 +13,47 @@
         android:layout_marginBottom="80dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/details_post_progress"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroud_overlay"
+        android:id="@+id/detail_image_container"
+        >
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="220dp"
         android:id="@+id/detail_post_image"
         android:scaleType="fitXY"/>
+    </FrameLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/details_post_title"
-        android:layout_below="@id/detail_post_image"
+        android:layout_below="@id/detail_image_container"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
-        android:background="#A8A8A8"/>
+        android:background="@color/grey_color"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:background="#A8A8A8"
+        android:background="@color/grey_color"
         android:id="@+id/details_post_author"
         android:layout_below="@id/details_post_title"
-        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableStart="@drawable/identity_black_24dp"
         android:text="Author | "
-        android:textSize="16sp"/>
+        android:textSize="12sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#A8A8A8"
+        android:background="@color/grey_color"
         android:id="@+id/details_post_date"
         android:layout_below="@id/details_post_title"
         android:layout_toEndOf="@id/details_post_author"
         android:text="Date"
-        android:textSize="16sp"/>
+        android:textSize="12sp"/>
 
     <WebView
         android:layout_width="match_parent"
