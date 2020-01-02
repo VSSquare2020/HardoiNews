@@ -17,8 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0fc4dd1-91cb-4266-b767-87725a3bcc7e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/privacy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/terms.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,25 +26,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hardoi News.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hardoi News.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/Contact_Us.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/Contact_Us.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/Main_Post_Slider.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/Main_Post_Slider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/WPPostDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vssquare/hardoinews/WPPostDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/desh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_contact__us.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_contact__us.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/drawer_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/drawer_menu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -431,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577897110128</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="12:01AM 03/01/2020 Commit by Sharukh Shaikh">
+      <created>1577989876635</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1577989876635</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -447,7 +434,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.50080514" side_tool="true" weight="0.19288956" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49643704" visible="true" weight="0.19288956" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49643704" visible="true" weight="0.19288956" />
       <window_info id="Structure" order="2" sideWeight="0.50080514" side_tool="true" weight="0.19288956" />
       <window_info id="Build Variants" order="3" sideWeight="0.5035629" side_tool="true" weight="0.19288956" />
       <window_info id="Image Layers" order="4" />
@@ -568,7 +555,8 @@
     <MESSAGE value="10:26PM 26/12 Commit by Sharukh" />
     <MESSAGE value="6:31PM 01/01/2020 Commit by Sharukh" />
     <MESSAGE value="10:14PM 01/01/2020 Commit by Sharukh Shaikh" />
-    <option name="LAST_COMMIT_MESSAGE" value="10:14PM 01/01/2020 Commit by Sharukh Shaikh" />
+    <MESSAGE value="12:01AM 03/01/2020 Commit by Sharukh Shaikh" />
+    <option name="LAST_COMMIT_MESSAGE" value="12:01AM 03/01/2020 Commit by Sharukh Shaikh" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AndroidProject/HardoiNews/app/src/main/java/com/vssquare/hardoinews/Model/Data_Model.java">
@@ -932,12 +920,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1989">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
           <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>
