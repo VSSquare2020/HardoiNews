@@ -12,8 +12,31 @@
        android:background="@color/white"
        android:id="@+id/main_layout"
         >
+
+       <com.google.android.material.appbar.AppBarLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/appBar"
+           android:theme="@style/AppTheme.AppbarOverlay">
+
+           <androidx.appcompat.widget.Toolbar
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:id="@+id/NHToolbar"
+               app:popupTheme="@style/AppTheme.PopupOverlay" >
+               <TextView
+                   android:id="@+id/toolbar_title"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/main_title"
+                   android:textColor="@color/white"
+                   style="@style/TextAppearance.AppCompat.Title"
+                   android:layout_gravity="center" />
+           </androidx.appcompat.widget.Toolbar>
+       </com.google.android.material.appbar.AppBarLayout>
        <androidx.cardview.widget.CardView
            android:layout_width="match_parent"
+           android:layout_below="@id/appBar"
            android:layout_height="wrap_content"
            android:id="@+id/post_slider_card"
            >
@@ -47,7 +70,7 @@
            android:layout_below="@id/post_slider_card"
            android:text="@string/daily_reads"
            android:textColor="@color/colorPrimary"
-           android:textSize="22sp"
+           android:textSize="20sp"
            android:paddingTop="8dp"
            android:paddingStart="10dp"
            android:paddingEnd="10dp"
@@ -79,6 +102,32 @@
             android:theme="@style/NavigationDrawerStyle"
             android:id="@+id/navigation_view"
             android:layout_gravity = "start">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nav_footer_textview1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="@string/spl_from" />
+
+                <TextView
+                    android:id="@+id/nav_footer_textview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="@string/vs" />
+
+            </LinearLayout>
 
         </com.google.android.material.navigation.NavigationView>
 

@@ -60,7 +60,7 @@
             android:label="@string/main_title"/>
         <activity android:name=".MainActivity"
             android:configChanges="screenSize|orientation"
-            android:label="@string/main_title"
+            android:theme="@style/MainActivityTheme"
             />
     </application>
 

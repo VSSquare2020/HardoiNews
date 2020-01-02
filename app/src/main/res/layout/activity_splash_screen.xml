@@ -19,12 +19,34 @@
 <ProgressBar
     android:layout_width="150dp"
     android:layout_height="30dp"
-    android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
     android:visibility="visible"
     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
     android:id="@+id/splash_progress"
-    android:layout_marginBottom="50dp"
+    android:layout_above="@id/txtfrom"
     android:indeterminate="true"
     />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@string/spl_from"
+        android:layout_above="@id/spl_vs_txt"
+        android:id="@+id/txtfrom"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/spl_vs_txt"
+        android:text="@string/vs"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
+
 </RelativeLayout>

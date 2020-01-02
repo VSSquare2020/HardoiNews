@@ -131,7 +131,7 @@ public class WPPostDetails extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
                     progressDialog.dismiss();
-                    Toast.makeText(WPPostDetails.this,"Unable to Load", Toast.LENGTH_LONG).show();
+                    Toast.makeText(WPPostDetails.this,"Unable to Load, Please Try Again", Toast.LENGTH_LONG).show();
                 }
             });
             SingletonVolley.getInstance(getApplicationContext()).addToRequestQueue(request);

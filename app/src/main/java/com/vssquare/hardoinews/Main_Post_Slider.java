@@ -44,51 +44,55 @@ public class Main_Post_Slider extends SliderViewAdapter<Main_Post_Slider.MainPos
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (position){
-                    case 0:
-                        slider_post_details.putExtra(POST_ID,jsonData.get(0).getId());
-                        slider_post_details.putExtra(POST_TITLE,jsonData.get(0).getTitle_rendered());
-                        slider_post_details.putExtra(POST_URL,jsonData.get(0).getLink());
-                        slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(0).getFeatured_media_url());
-                        slider_post_details.putExtra(POST_DATE,jsonData.get(0).getDate());
-                        slider_post_details.putExtra(POST_AUTHOR,jsonData.get(0).getAuthor_name());
-                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(0).getCategory_name());
-                        slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(slider_post_details);
-                        break;
-                    case 1:
-                        slider_post_details.putExtra(POST_ID,jsonData.get(1).getId());
-                        slider_post_details.putExtra(POST_TITLE,jsonData.get(1).getTitle_rendered());
-                        slider_post_details.putExtra(POST_URL,jsonData.get(1).getLink());
-                        slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(1).getFeatured_media_url());
-                        slider_post_details.putExtra(POST_DATE,jsonData.get(1).getDate());
-                        slider_post_details.putExtra(POST_AUTHOR,jsonData.get(1).getAuthor_name());
-                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(1).getCategory_name());
-                        slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(slider_post_details);
-                        break;
-                    case 2:
-                        slider_post_details.putExtra(POST_ID,jsonData.get(2).getId());
-                        slider_post_details.putExtra(POST_TITLE,jsonData.get(2).getTitle_rendered());
-                        slider_post_details.putExtra(POST_URL,jsonData.get(2).getLink());
-                        slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(2).getFeatured_media_url());
-                        slider_post_details.putExtra(POST_DATE,jsonData.get(2).getDate());
-                        slider_post_details.putExtra(POST_AUTHOR,jsonData.get(2).getAuthor_name());
-                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(2).getCategory_name());
-                        slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(slider_post_details);
-                        break;
-                    case 3:
-                        slider_post_details.putExtra(POST_ID,jsonData.get(3).getId());
-                        slider_post_details.putExtra(POST_TITLE,jsonData.get(3).getTitle_rendered());
-                        slider_post_details.putExtra(POST_URL,jsonData.get(3).getLink());
-                        slider_post_details.putExtra(POST_IMAGE_URL,jsonData.get(3).getFeatured_media_url());
-                        slider_post_details.putExtra(POST_DATE,jsonData.get(3).getDate());
-                        slider_post_details.putExtra(POST_AUTHOR,jsonData.get(3).getAuthor_name());
-                        slider_post_details.putExtra(POST_CATEGORY,jsonData.get(3).getCategory_name());
-                        slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(slider_post_details);
-                        break;
+                if(CheckInternetConnection.IsNetworkAvailable(context)) {
+                    switch (position) {
+                        case 0:
+                            slider_post_details.putExtra(POST_ID, jsonData.get(0).getId());
+                            slider_post_details.putExtra(POST_TITLE, jsonData.get(0).getTitle_rendered());
+                            slider_post_details.putExtra(POST_URL, jsonData.get(0).getLink());
+                            slider_post_details.putExtra(POST_IMAGE_URL, jsonData.get(0).getFeatured_media_url());
+                            slider_post_details.putExtra(POST_DATE, jsonData.get(0).getDate());
+                            slider_post_details.putExtra(POST_AUTHOR, jsonData.get(0).getAuthor_name());
+                            slider_post_details.putExtra(POST_CATEGORY, jsonData.get(0).getCategory_name());
+                            slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(slider_post_details);
+                            break;
+                        case 1:
+                            slider_post_details.putExtra(POST_ID, jsonData.get(1).getId());
+                            slider_post_details.putExtra(POST_TITLE, jsonData.get(1).getTitle_rendered());
+                            slider_post_details.putExtra(POST_URL, jsonData.get(1).getLink());
+                            slider_post_details.putExtra(POST_IMAGE_URL, jsonData.get(1).getFeatured_media_url());
+                            slider_post_details.putExtra(POST_DATE, jsonData.get(1).getDate());
+                            slider_post_details.putExtra(POST_AUTHOR, jsonData.get(1).getAuthor_name());
+                            slider_post_details.putExtra(POST_CATEGORY, jsonData.get(1).getCategory_name());
+                            slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(slider_post_details);
+                            break;
+                        case 2:
+                            slider_post_details.putExtra(POST_ID, jsonData.get(2).getId());
+                            slider_post_details.putExtra(POST_TITLE, jsonData.get(2).getTitle_rendered());
+                            slider_post_details.putExtra(POST_URL, jsonData.get(2).getLink());
+                            slider_post_details.putExtra(POST_IMAGE_URL, jsonData.get(2).getFeatured_media_url());
+                            slider_post_details.putExtra(POST_DATE, jsonData.get(2).getDate());
+                            slider_post_details.putExtra(POST_AUTHOR, jsonData.get(2).getAuthor_name());
+                            slider_post_details.putExtra(POST_CATEGORY, jsonData.get(2).getCategory_name());
+                            slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(slider_post_details);
+                            break;
+                        case 3:
+                            slider_post_details.putExtra(POST_ID, jsonData.get(3).getId());
+                            slider_post_details.putExtra(POST_TITLE, jsonData.get(3).getTitle_rendered());
+                            slider_post_details.putExtra(POST_URL, jsonData.get(3).getLink());
+                            slider_post_details.putExtra(POST_IMAGE_URL, jsonData.get(3).getFeatured_media_url());
+                            slider_post_details.putExtra(POST_DATE, jsonData.get(3).getDate());
+                            slider_post_details.putExtra(POST_AUTHOR, jsonData.get(3).getAuthor_name());
+                            slider_post_details.putExtra(POST_CATEGORY, jsonData.get(3).getCategory_name());
+                            slider_post_details.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(slider_post_details);
+                            break;
+                    }
+                }else{
+                    Toast.makeText(context, "No Internet Connection!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

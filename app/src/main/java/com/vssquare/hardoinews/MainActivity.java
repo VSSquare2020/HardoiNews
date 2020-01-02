@@ -3,12 +3,14 @@ package com.vssquare.hardoinews;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +20,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     SliderView sliderView;
     Main_Post_Slider main_post_slider;
+    Toolbar NH_toolbar;
+
+    RelativeLayout main_layout;
 
     public MainActivity(){
 
@@ -57,14 +64,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         // Navigation Bar
 
+        main_layout = findViewById(R.id.main_layout);
+
         listView = findViewById(R.id.listView);
         sliderView = findViewById(R.id.post_slider);
         mDrawerlayout = findViewById(R.id.drawer);
-        actionBarDrawerToggle =new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
+        NH_toolbar = findViewById(R.id.NHToolbar);
+        setSupportActionBar(NH_toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBarDrawerToggle =new ActionBarDrawerToggle(this,mDrawerlayout,NH_toolbar,R.string.open,R.string.close);
         mDrawerlayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -156,12 +166,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
             mDrawerlayout.closeDrawer(GravityCompat.START);
         }
-        else if(id == R.id.exit_app){
-            finish();
-        }
-        else {
+
+        else if(id == R.id.contact){
             Intent intent = new Intent(MainActivity.this,Contact_Us.class);
             startActivity(intent);
+            mDrawerlayout.closeDrawer(GravityCompat.START);
+        }
+        else if(id == R.id.terms_condition){
+            Intent start_TC = new Intent(Intent.ACTION_VIEW, Uri.parse("https://newshardoi.com/terms-conditions/"));
+            startActivity(start_TC);
+            mDrawerlayout.closeDrawer(GravityCompat.START);
+
+        }else if(id == R.id.privacy_policy){
+            Intent start_PP = new Intent(Intent.ACTION_VIEW,Uri.parse("https://newshardoi.com/privacy/"));
+            startActivity(start_PP);
             mDrawerlayout.closeDrawer(GravityCompat.START);
         }
 
@@ -171,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         i = i + 4;
+                if (CheckInternetConnection.IsNetworkAvailable(this)) {
         Intent intent = new Intent(getApplication(),WPPostDetails.class);
         intent.putExtra(POST_ID,jsonDataList.get(i).getId());
         intent.putExtra(POST_TITLE,jsonDataList.get(i).getTitle_rendered());
@@ -180,6 +199,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra(POST_AUTHOR,jsonDataList.get(i).getAuthor_name());
         intent.putExtra(POST_CATEGORY,jsonDataList.get(i).getCategory_name());
         startActivity(intent);
+        }
+        else{
+            Snackbar.make(main_layout, "No Internet Connection!!", Snackbar.LENGTH_LONG).show();
+            //getLayoutInflater().inflate(R.layout.errormessage,main_layout);
+        }
+
     }
 
 }
